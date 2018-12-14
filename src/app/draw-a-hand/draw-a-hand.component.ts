@@ -167,7 +167,7 @@ export class DrawAHandComponent implements OnInit {
         this.invalidHandSize = true;
         return false;
       }
-      
+
       return true;
     }else{
       if(this.totalCards == 0){
@@ -220,7 +220,7 @@ export class DrawAHandComponent implements OnInit {
    * Draws card from the filtered deck.
    * Called when the user presses the Draw button.
    */
-  draw() {
+  draw(): void {
     // If this is first time the user attempts to draw from this deck
     if(!this.isDrawing){
       // If the input is valid, lock filter fields and adjust dropdown values if necessary
@@ -260,7 +260,7 @@ export class DrawAHandComponent implements OnInit {
    * Resets all Deck and Filter values.
    * Called when a user clicks the Reset Button. 
    */
-  resetDeck() {
+  resetDeck(): void {
     this.MasterDeck = this.deckService.getMasterDeck(this.totalDecks);
     this.totalCards = this.MasterDeck.clubs.totalCards * 4;
     this.sizeInputMsg = `1 - ${this.totalCards}`;

@@ -17,6 +17,11 @@ export class DeckService {
    * numDecks: The number of decks the user wants to draw from.
    */
   getMasterDeck(numDecks: number): Deck {
+    if(numDecks < 1){
+      console.error(`Cannot generate ${numDecks} decks.`);
+      return;
+    }
+
     var deck: Deck = new Deck;
 
     deck.spades = this.suitService.getSuit('S', numDecks);
