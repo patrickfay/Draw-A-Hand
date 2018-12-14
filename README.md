@@ -13,7 +13,7 @@ Deck: {
 }
 
 Suit: {
-  cards: Cards[];
+  cards: Card[];
   totalCards: number;
 }
 
