@@ -1,0 +1,139 @@
+  
+<!-- Filter Divs -->
+<div class="filterDiv">
+  <div id="filterTitle">Filters:</div>
+
+  <!-- Deck Size -->
+  <div id="deckSize">
+    <div class="filterName">
+      Deck Size:  <div style="font-weight: 600; display: inline-block;">{{totalCards}}</div>
+    </div>
+  </div>
+
+  <!-- Size Input Div Container -->
+  <div class="sizeContainer">
+    <div class="filterName">Size Of Hand:</div>
+    <input  [class.sizeInput]="!invalidHandSize"
+            [class.invalidHandSize]="invalidHandSize"
+            [class.disabledInput]="isDrawing"
+            type="number"
+            #handSize
+            placeholder="{{sizeInputMsg}}"
+            (keyup)="handLengthIsValid(handSize.value)"
+            [disabled]="isDrawing">
+  </div>
+
+  <!-- Suit Checkbox Div Container -->
+  <div class="suitsContainer">
+    <div class="filterName">Suits:</div>
+
+    <div class="suitChoice">
+      <input  type="checkbox" 
+              name="diamonds"
+              #diamonds
+              (change)="updateValuesCheckbox($event)"
+              [disabled]="isDrawing"
+              checked>
+      <label>Diamonds</label>
+    </div>
+
+    <div class="suitChoice">
+      <input  type="checkbox" 
+              name="spades"
+              #spades
+              (change)="updateValuesCheckbox($event)"
+              [disabled]="isDrawing"
+              checked>
+      <label>Spades</label>
+    </div>
+
+    <div class="suitChoice">
+      <input  type="checkbox" 
+              name="clubs"
+              #clubs
+              (change)="updateValuesCheckbox($event)"
+              [disabled]="isDrawing"
+              checked>
+      <label>Clubs</label>
+    </div>
+
+    <div class="suitChoice">
+      <input  type="checkbox" 
+              name="hearts"
+              #hearts
+              (change)="updateValuesCheckbox($event)"
+              [disabled]="isDrawing"
+              checked>
+      <label>Hearts</label>
+    </div>    
+  </div>
+
+  <!-- Max Card Value Div Container -->
+  <div class="dropdownContainer" id="maxDropdownDiv">
+    <div class="filterName">Max Card Value:</div>
+
+    <select #maxVal
+            (change)="updateValuesMaxMin()"
+            [disabled]="isDrawing"
+            [class.disabledSelect]="isDrawing">
+      <option selected>-select-</option>
+      <option *ngFor="let val of maxValues">{{val}}</option>
+    </select>
+    <img id="maxSelectIcon" src="../assets/dropdown_icon.svg" height="15px" width="15px">
+  </div>
+
+  <!-- Min Card Value Div Container -->
+  <div class="dropdownContainer" id="minDropdownDiv">
+    <div class="filterName">Min Card Value:</div>
+
+    <select #minVal
+            (change)="updateValuesMaxMin()"
+            [disabled]="isDrawing"
+            [class.disabledSelect]="isDrawing">
+      <option selected >-select-</option>
+      <option *ngFor="let val of minValues">{{val}}</option>
+    </select>
+    <img id="minSelectIcon" src="../assets/dropdown_icon.svg" height="15px" width="15px">
+  </div>
+
+  <!-- Draw and Reset Button Div -->
+  <div buttonsDiv>
+    <button [class.drawableButton]="!finishedHand" 
+            [class.finishedButton]="finishedHand"
+            [disabled]="finishedHand"
+            (click)="draw()">Draw</button>
+  
+    <button id="resetButton" (click)="resetDeck()">Reset</button>
+  </div>
+
+</div>
+
+
+<!-- Drawn Cards Divs Below -->
+<div class="drawnCardsDiv">
+  <!-- Msg if user has not drawn any cards yet -->
+  <ng-container *ngIf="drawnCards.length < 1">
+    <div class="drawMsg">Select A Hand To Draw From</div>
+  </ng-container>
+
+  <!-- If cards have been drawn -->
+  <ng-container *ngIf="drawnCards.length > 0">
+    <!-- If the user has not drawn the entire hand -->
+    <ng-container *ngIf="!finishedHand">
+      <div class="drawMsg">Cards Drawn: {{drawnCards.length}}</div>
+    </ng-container>
+
+    <!-- If the user has finsihed drawing their hand -->
+    <ng-container *ngIf="finishedHand">
+      <div class="completeMsg">Hand Complete! Reset to draw again</div>
+    </ng-container>
+
+    <!-- Cards the user has drawn -->
+    <ng-container *ngFor="let card of drawnCards">
+      <div class="drawnCard">
+        <img src="../../assets/cards/{{card.name}}.png" height="100%" width="100%">
+        <div style="color: white; text-align: center;">Quantity: 1</div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
