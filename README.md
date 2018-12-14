@@ -22,7 +22,7 @@ Card: {
   quantity: number;
 }
 ```
-This layout is used so there is no need to shuffle the deck when a card is drawn from it, rather a random index, n, is generated and the nth card in the deck is drawn. Because there are only 4 suits, the number of cards in a suit is known, and the quantity of each card in the deck being drawn from is known, searching for the nth card can be done quickly. There will only be at most 17 iterations of suit and card objects to find the nth card, even if there is more than one deck. Adding more decks to the deck being drawn from will only alter 2 fields; Suit.totalCards and Card.quanity.
+This layout is used so there is no need to shuffle the deck when a card is drawn from it, rather a random index, n, is generated and the nth card in the deck is drawn. Because there are only 4 suits, the number of cards in a suit is known, and the quantity of each card in the deck being drawn from is known, searching for the nth card can be done quickly. There will only be at most 17 iterations of suit and card objects to find the nth card, even if there is more than one deck. Adding more decks to the deck being drawn from will only alter 2 fields; Suit.totalCards and Card.quantity.
 
 ## Componenets
 Only one component is needed, draw-a-hand component.
