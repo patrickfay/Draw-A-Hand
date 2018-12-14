@@ -1,8 +1,8 @@
 import {Card} from './card';
 
 /*
- * cards: An array of cards representing all cards in this suit from deck.
- * totalCards: A number representing the total number of cards in this suit in the MasterDeck.
+ * cards: An array of all cards in this suit.
+ * totalCards: The total number of cards in this suit. Can be more than 13 if the user is drawing from more than 1 deck.
  */
 export class Suit {
   cards: Card[];

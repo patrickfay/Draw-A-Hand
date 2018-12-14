@@ -180,7 +180,7 @@ export class DrawAHandComponent implements OnInit {
   }
 
   /* 
-   * Returns a card at nth index of MasterDeck. Works in linear time.
+   * Returns a card at nth index of MasterDeck.
    * Searches all suits, determines if index n is within suit.totalCards if not subtracts totalCards from n and checks next suit.
    * When it finds the suit with the nth card, uses similar process when going through suit.cards.
    * 
