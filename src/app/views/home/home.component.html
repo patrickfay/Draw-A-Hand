@@ -1,9 +1,10 @@
 <div class="home-container">
 
-  <div class="home-title">home works!</div>
+  <div class="home-hand-filt-container">
+    <hand-filter></hand-filter>
+  </div>
 
-  <hand-filter></hand-filter>
-
-  <card-display [cardsArr]="allCards"></card-display>
-
+  <div class="home-card-disp-container">
+    <card-display [cardsArr]="drawnCards"></card-display>
+  </div>
 </div>

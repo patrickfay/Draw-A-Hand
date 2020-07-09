@@ -1,10 +1,13 @@
 /* god this sucks without sass */
+.card-disp-container {
+  border: solid 1px green;
+}
 
-.card-works-title {
+.card-disp-works-title {
   color: green;
   font-weight: 600;
 }
 
-.card-array-input-item {
+.card-disp-array-input-item {
   color: limegreen;
 }
