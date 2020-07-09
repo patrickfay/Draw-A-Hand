@@ -1,0 +1,10 @@
+/* god this sucks without sass */
+
+.card-works-title {
+  color: green;
+  font-weight: 600;
+}
+
+.card-array-input-item {
+  color: limegreen;
+}
