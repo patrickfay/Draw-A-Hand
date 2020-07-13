@@ -1,7 +1,9 @@
 <div class="home-container">
 
   <div class="home-hand-filt-container">
-    <hand-filter></hand-filter>
+    <hand-filter (drawCardEvent)="parentIsDrawing()"
+                 (handFinishedEvent)="parentHandFinished()"
+                 (resetHandEvent)="parentResetHand()"></hand-filter>
   </div>
 
   <div class="home-card-disp-container">

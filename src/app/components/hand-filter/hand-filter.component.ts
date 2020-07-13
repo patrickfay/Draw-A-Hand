@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'hand-filter',
@@ -7,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HandFilterComponent implements OnInit {
 
+  @Output() drawCardEvent = new EventEmitter<boolean>();
+  @Output() handFinishedEvent = new EventEmitter<boolean>();
+  @Output() resetHandEvent = new EventEmitter<boolean>();
+
+
   constructor() { }
 
   ngOnInit() {
-    console.log('woohoo in the hand filter component!');
+  }
+
+  drawCard() {
+    console.log('user drawing card');
+    this.drawCardEvent.emit(true);
+  }
+
+  handFinished() {
+    console.log('in handFinished');
+    this.handFinishedEvent.emit(true);
+  }
+
+  userReset() {
+    console.log('user reset deck');
+    this.resetHandEvent.emit();
   }
 
 }

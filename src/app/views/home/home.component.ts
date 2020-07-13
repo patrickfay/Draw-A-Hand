@@ -33,11 +33,27 @@ export class HomeComponent implements OnInit {
     this.totalDecks = 1;
     this.MasterDeck = this.deckService.getMasterDeck(this.totalDecks);
     this.totalCards = this.MasterDeck.clubs.totalCards * 4;
-    this.drawnCards = [];
+    // this.drawnCards = [];
+    this.drawnCards = this.MasterDeck.diamonds.cards;
 
     this.allValues = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
     this.isDrawing = false;
     this.finishedHand = false;
   }
 
+  parentIsDrawing() {
+    this.isDrawing = true;
+    this.finishedHand = false;
+    console.log('in PARENT\n****Draw Card****', this.isDrawing);
+  }
+
+  parentHandFinished() {
+    this.isDrawing = false;
+    this.finishedHand = true;
+    console.log('in PARENT\n****Hand is FINISHED****', this.finishedHand);
+  }
+
+  parentResetHand() {
+    console.log('in PARENT\n****RESETING HAND****');
+  }
 }
