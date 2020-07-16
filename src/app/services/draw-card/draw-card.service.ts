@@ -9,16 +9,14 @@ import { Card } from '../../models/card';
 })
 export class DrawCardService {
 
-  constructor() { }
-
   userDrawing = new Subject<string>();
 
+  constructor() { }
 
   // draw and return a card from _deck
   drawCard(_deck: Deck): Card {
     let suits = _deck.getAllSuits();
     let randomNum = Math.floor(Math.random() * (_deck.getTotalCards() - 1)) + 1;
-    console.log(_deck.getTotalCards(), randomNum);
 
     for (let i = 0; i < suits.length; i++) {
       // if this suit contains the nth card, find and return it

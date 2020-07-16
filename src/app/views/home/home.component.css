@@ -1,7 +1,6 @@
 .home-container {
   display: flex;
   border-radius: 5px;
-  background-color: rgb(253, 253, 253);
   margin: 20px 3%;  
 }
 

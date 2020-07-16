@@ -2,7 +2,6 @@
 
   <div class="home-hand-filt-container">
     <hand-filter [deck]="MasterDeck" (deckDataEmitter)="getFiltAndDraw($event)"></hand-filter>
-    <!-- <hand-filter [deck]="MasterDeck" (deckDataEmitter)="filtDeckData = $event"></hand-filter> -->
 
     <div class="home-btns-container margin-top">
       <button class="home-btn home-draw-btn" type="button"
@@ -18,6 +17,6 @@
   </div>
 
   <div class="home-card-disp-container">
-    <card-display [cardsArr]="drawnCards"></card-display>
+    <card-display [cardsArr]="drawnCards" [handIsFinished]="handFinished"></card-display>
   </div>
 </div>

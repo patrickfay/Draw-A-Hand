@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { DrawCardService } from '../../services/draw-card/draw-card.service';
+
 @Component({
   selector: 'card-display',
   templateUrl: './card-display.component.html',
@@ -8,11 +10,22 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardDisplayComponent implements OnInit {
 
   @Input() cardsArr: Array<string>;
+  @Input() handIsFinished: number;
 
-  constructor() { }
+  cardDispHeader: string;
+  userDrawingStatus: string;
+
+  constructor(
+    private drawCardService: DrawCardService
+  ) { }
 
   ngOnInit() {
-    console.log('woohoo in tha card display component!', this.cardsArr);
-  }
+    this.cardDispHeader = 'Select Filters & Draw Some Cards!';
+    this.userDrawingStatus = 'not-drawing';
 
+    // listen for broadcasted user event and update title
+    this.drawCardService.userDrawing.subscribe({
+      next: eventName => this.userDrawingStatus = eventName === 'reset-hand' ? 'not-drawing' : eventName
+    });
+  }
 }
