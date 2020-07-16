@@ -1,6 +1,33 @@
 /* god this sucks without sass */
 .card-disp-container {
-  border: solid 1px green;
+  /* border: solid 1px green; */
+  border-radius: 0 3px 3px 3px;
+  background-color: rgb(57, 143, 46);
+  min-height: 550px;
+  padding: 10px;
+
+}
+
+.card-disp-header {
+  border-bottom: solid 1px #fff;
+  color: #fff;
+  font-size: 32px;
+  text-align: center;
+}
+
+.card-disp-body {
+  margin-top: 15px;
+}
+
+
+.drawnCard {
+  border-radius: 5px;
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 50px;
+  padding: 5px;
+  height: 200px;
+  width: 150px;
 }
 
 .card-disp-works-title {

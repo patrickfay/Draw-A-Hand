@@ -1,11 +1,19 @@
 <div class="home-container">
 
   <div class="home-hand-filt-container">
-    <hand-filter [deck]="MasterDeck" (filteredDeckEvent)="handleFilteredDeck(filteredDeck)"></hand-filter>
+    <hand-filter [deck]="MasterDeck" (deckDataEmitter)="getFiltAndDraw($event)"></hand-filter>
+    <!-- <hand-filter [deck]="MasterDeck" (deckDataEmitter)="filtDeckData = $event"></hand-filter> -->
 
     <div class="home-btns-container margin-top">
-      <button type="button" class="home-btn home-draw-btn" (click)="drawCard()">Draw!</button>
-      <button type="button" class="home-btn home-reset-btn" (click)="resetHand()">Reset :(</button>
+      <button class="home-btn home-draw-btn" type="button"
+              (click)="handleDrawBtn()"
+              [disabled]="handFinished">
+        Draw!
+      </button>
+      <button class="home-btn home-reset-btn" type="button"
+              (click)="resetHand()">
+        Reset :(
+      </button>
     </div>
   </div>
 

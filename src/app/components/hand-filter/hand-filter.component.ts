@@ -16,13 +16,13 @@ export class HandFilterComponent implements OnInit {
   // deck that will be altered as user updates filters
   @Input() deck: Deck;
 
-  // output event emitters
-  @Output() filteredDeckEvent = new EventEmitter<any>();
+  // data sent to parent component when user is ready to draw from filtered deck
+  @Output() deckDataEmitter = new EventEmitter<any>();
 
-  deckSize: number;       // TODO - replace this with actual deck size when get a deck obj
+  deckSize: number;
   allCardValOpts: Array<string>;
 
-  // form
+  // form group/controls
   filterFormGroup;
   sizeOfHand;
   selectedSuits;
@@ -110,17 +110,18 @@ export class HandFilterComponent implements OnInit {
   handleBroadcastedEvent(eventName: string) {
     if (eventName === 'is-drawing') {
       if (this.filterFormGroup.valid) {
-        console.log('isDrawing and valid');
 
         // if the form is valid and the user clicked draw for the first time, return the filtered deck to parent component
         if (this.filterFormGroup.enabled) {
           this.filterFormGroup.disable();
-          this.filteredDeckEvent.emit(this.deck);
+          this.deckDataEmitter.emit({
+            filteredDeck: this.deck,
+            sizeOfHand: parseInt(this.filterFormGroup.controls.sizeOfHand.value)
+          });
         }  
       }
 
     } else if (eventName === 'reset-hand') {
-      console.log('reset hand');
       this.resetFilter();
     }
   }

@@ -16,12 +16,13 @@ export class HomeComponent implements OnInit {
 
   numDecks: number;   // Total decks user is drawing from (will be 1 for this application)
   MasterDeck: Deck;     // Deck user will draw from and alter with filters
-  totalCards: number;   // Total cards currently in MasterDeck
+  filtDeckData: any;    // filtered deck data, gotten from child filter-hand component when user presses draw btn
   drawnCards: Card[];   // All cards drawn from the deck
 
   allValues: Array<string>; // All possible values to be displayed in Max/Min dropdowns
-  isDrawing: boolean;       // True if user is drawing cards from deck, false if altering deck to draw from.
-  finishedHand: boolean;    // True if the user has drawn enough cards to fill their hand
+  handFinished: boolean;
+  // isDrawing: boolean;       // True if user is drawing cards from deck, false if altering deck to draw from.
+  // finishedHand: boolean;    // True if the user has drawn enough cards to fill their hand
 
   constructor (
     private deckService: DeckService,
@@ -32,32 +33,43 @@ export class HomeComponent implements OnInit {
     // init global vars
     this.numDecks = 1;
     this.MasterDeck = this.deckService.getMasterDeck(this.numDecks);
-    this.totalCards = this.MasterDeck.clubs.totalCards * 4;
-    // this.drawnCards = [];
-    this.drawnCards = this.MasterDeck.diamonds.cards;
+    this.drawnCards = [];
+    this.filtDeckData = null;
 
     this.allValues = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-    this.isDrawing = false;
-    this.finishedHand = false;
+    this.handFinished = false;
   }
 
+  handleDrawBtn() {
+    // draw card or get user's filtered deck data by emitting isDrawing() broadcast
+    !!this.filtDeckData ? this.drawCard() : this.drawCardService.isDrawing();
+  }
 
   drawCard() {
-    console.log('CALLING DRAW CARD FROM HOME COMPONENT\n');
-    this.drawCardService.isDrawing();
+    // draw a new card from filtered deck and push it to drawn cards
+    this.drawnCards.unshift(this.drawCardService.drawCard(this.filtDeckData.filteredDeck));
+
+    if (this.drawnCards.length === this.filtDeckData.sizeOfHand) {
+      console.log('hand is full fellers');
+      this.handFinished = true;
+    }
+
+    console.log(this.drawnCards);
+  }
+
+  getFiltAndDraw(_data) {
+    this.filtDeckData = _data;
+    this.drawCard();
   }
 
   resetHand() {
     this.MasterDeck = this.deckService.getMasterDeck(this.numDecks);
+    this.filtDeckData = null;
+    this.handFinished = false;
+    this.drawnCards = [];
+
+    // emit reset hand event (will be caught in hand-filt component)
     this.drawCardService.resetHand();
   }
 
-  // handFinished() {
-  //   this.drawCardService.handCompleted();
-  // }
-
-  handleFilteredDeck(filteredDeck) {
-    console.log('our filtered Deck', filteredDeck);
-    console.log('-------------\n\nmasterdeck here', this.MasterDeck);
-  }
 }

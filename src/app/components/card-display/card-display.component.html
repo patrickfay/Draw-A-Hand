@@ -1,11 +1,22 @@
 <div class="card-disp-container">
 
-  <div class="card-disp-array-input-container">
+  <div class="card-disp-header">Select Filters & Draw Some Cards!</div>
+  <div class="card-disp-body">
+
+    <!-- display some cards yo -->
+    <div class="drawnCard" *ngFor="let card of cardsArr">
+      <img src="../../assets/cards/{{card.name}}.png" height="100%" width="100%">
+      <div style="color: white; text-align: center;">Quantity: 1</div>
+    </div>
+
+  </div>
+
+  <!-- <div class="card-disp-array-input-container">
     Our card input array is
   
     <span class="card-disp-array-input-item" *ngFor="let card of cardsArr">
       {{card.name}}
     </span>
-  </div>
+  </div> -->
 
 </div>
