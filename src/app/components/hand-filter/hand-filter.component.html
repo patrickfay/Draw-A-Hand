@@ -1,10 +1,85 @@
 <div class="hand-filt-container">
-  We are the hand filter!
 
+  <div class="hand-filt-title">Filters:</div>    
+  
+  <!-- form group & body of filter -->
+  <form class="hand-filt-body" [formGroup]="filterFormGroup" (ngSubmit)="submitForm()">
 
-  <div class="hand-filt-btn-ctn">
-    <button class="hand-filt-btn" (click)="drawCard()">Draw Card</button>
-    <button class="hand-filt-btn" (click)="handFinished()">Hand Finished</button>
-    <button class="hand-filt-btn" (click)="userReset()">Reset</button>
-  </div>
+    <!-- deck size -->
+    <div class="margin-top">
+      <div class="hand-filt-filter-header">
+        Deck Size:
+        <span style="font-weight: 600;">{{deckSize}}</span>
+      </div>
+    </div>
+
+    <!-- size of hand -->
+    <div class="margin-top">
+      <div class="hand-filt-filter-header">Size of Hand:</div>
+      <div class="hand-filt-filter-body">
+        <input type="text"
+               formControlName="sizeOfHand"
+               [ngClass]="{'invalidInput': filterFormGroup.controls.sizeOfHand.status === 'INVALID' && !!filterFormGroup.controls.sizeOfHand.value}"
+               placeholder="1 - {{deckSize}}">
+      </div>
+    </div>
+
+    <!-- suits checkboxes -->
+    <div class="margin-top">
+      <div class="hand-filt-filter-header">Suits:</div>
+      <div class="hand-filt-filter-body">
+
+        <div class="hand-filt-suits-container">
+
+          <div class="hand-filt-suit-item">
+            <input type="checkbox" formControlName="diamondsSuit" name="suit" id="diamonds">
+            <label for="diamonds">Diamonds</label>
+          </div>
+  
+          <div class="hand-filt-suit-item">
+            <input type="checkbox" formControlName="spadesSuit" name="suit" id="spades" checked>
+            <label for="spades">Spades</label>
+          </div>
+
+          <div class="hand-filt-suit-item">
+            <input type="checkbox" formControlName="clubsSuit" name="suit" id="clubs" checked>
+            <label for="clubs">Clubs</label>
+          </div>
+
+          <div class="hand-filt-suit-item">
+            <input type="checkbox" formControlName="heartsSuit" name="suit" id="hearts" checked>
+            <label for="hearts">Hearts</label>
+          </div>     
+        </div>
+
+      </div>
+    </div>
+
+    <!-- max card dropdown -->
+    <div class="margin-top">
+      <div class="hand-filt-filter-header">Max Card Value:</div>
+      <div class="hand-filt-filter-body">
+        <select formControlName="maxCardVal">
+          <option *ngFor="let cardVal of cardValOptions">{{cardVal}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- min card dropdown -->
+    <div class="margin-top">
+      <div class="hand-filt-filter-header">Min Card Value:</div>
+      <div class="hand-filt-filter-body">
+        <select formControlName="minCardVal">
+          <option *ngFor="let cardVal of cardValOptions">{{cardVal}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- draw and reset btns -->
+    <div class="hand-filt-btns-container margin-top">
+      <button class="hand-filt-btn hand-filt-draw-btn" type="submit">Draw!</button>
+      <button class="hand-filt-btn hand-filt-reset-btn" type="button" (click)="userReset()">Reset :(</button>
+    </div>
+
+  </form>
 </div>
