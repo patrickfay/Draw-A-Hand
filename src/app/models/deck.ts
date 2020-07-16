@@ -31,4 +31,9 @@ export class Deck {
   getAllSuits(): Suit[] {
     return [this.spades, this.hearts, this.clubs, this.diamonds];
   }
+
+  // returns total num of cards in this deck
+  getTotalCards(): number {
+    return this.spades.totalCards + this.hearts.totalCards + this.clubs.totalCards + this.diamonds.totalCards;
+  }
 }

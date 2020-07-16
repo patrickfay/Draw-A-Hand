@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { DeckService } from '../services/deck.service';
-import { SuitService } from '../services/suit.service';
+import { DeckService } from '../services/deck/deck.service';
+import { SuitService } from '../services/suit/suit.service';
 
 import { Deck } from '../models/deck';
 import { Card } from '../models/card';

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Suit } from '../models/suit';
-import { Card } from '../models/card';
+import { Suit } from '../../models/suit';
+import { Card } from '../../models/card';
 
-import { cards } from '../data/cards';
+import { cards } from '../../data/cards';
 
 @Injectable({
   providedIn: 'root'

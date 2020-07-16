@@ -1,9 +1,12 @@
 <div class="home-container">
 
   <div class="home-hand-filt-container">
-    <hand-filter (drawCardEvent)="parentIsDrawing()"
-                 (handFinishedEvent)="parentHandFinished()"
-                 (resetHandEvent)="parentResetHand()"></hand-filter>
+    <hand-filter [deck]="MasterDeck" (filteredDeckEvent)="handleFilteredDeck(filteredDeck)"></hand-filter>
+
+    <div class="home-btns-container margin-top">
+      <button type="button" class="home-btn home-draw-btn" (click)="drawCard()">Draw!</button>
+      <button type="button" class="home-btn home-reset-btn" (click)="resetHand()">Reset :(</button>
+    </div>
   </div>
 
   <div class="home-card-disp-container">

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Deck } from 'src/app/models/deck';
 import { Card } from 'src/app/models/card';
 
-import { DeckService } from '../../services/deck.service';
-import { SuitService } from '../../services/suit.service';
+import { DeckService } from '../../services/deck/deck.service';
+import { DrawCardService } from '../../services/draw-card/draw-card.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { SuitService } from '../../services/suit.service';
 })
 export class HomeComponent implements OnInit {
 
-  totalDecks: number;   // Total decks user is drawing from (will be 1 for this application)
+  numDecks: number;   // Total decks user is drawing from (will be 1 for this application)
   MasterDeck: Deck;     // Deck user will draw from and alter with filters
   totalCards: number;   // Total cards currently in MasterDeck
   drawnCards: Card[];   // All cards drawn from the deck
@@ -25,13 +25,13 @@ export class HomeComponent implements OnInit {
 
   constructor (
     private deckService: DeckService,
-    private suitService: SuitService
+    private drawCardService: DrawCardService
   ) { }
 
   ngOnInit() {
     // init global vars
-    this.totalDecks = 1;
-    this.MasterDeck = this.deckService.getMasterDeck(this.totalDecks);
+    this.numDecks = 1;
+    this.MasterDeck = this.deckService.getMasterDeck(this.numDecks);
     this.totalCards = this.MasterDeck.clubs.totalCards * 4;
     // this.drawnCards = [];
     this.drawnCards = this.MasterDeck.diamonds.cards;
@@ -41,19 +41,23 @@ export class HomeComponent implements OnInit {
     this.finishedHand = false;
   }
 
-  parentIsDrawing() {
-    this.isDrawing = true;
-    this.finishedHand = false;
-    console.log('in PARENT\n****Draw Card****', this.isDrawing);
+
+  drawCard() {
+    console.log('CALLING DRAW CARD FROM HOME COMPONENT\n');
+    this.drawCardService.isDrawing();
   }
 
-  parentHandFinished() {
-    this.isDrawing = false;
-    this.finishedHand = true;
-    console.log('in PARENT\n****Hand is FINISHED****', this.finishedHand);
+  resetHand() {
+    this.MasterDeck = this.deckService.getMasterDeck(this.numDecks);
+    this.drawCardService.resetHand();
   }
 
-  parentResetHand() {
-    console.log('in PARENT\n****RESETING HAND****');
+  // handFinished() {
+  //   this.drawCardService.handCompleted();
+  // }
+
+  handleFilteredDeck(filteredDeck) {
+    console.log('our filtered Deck', filteredDeck);
+    console.log('-------------\n\nmasterdeck here', this.MasterDeck);
   }
 }

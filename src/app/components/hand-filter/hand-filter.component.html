@@ -60,7 +60,7 @@
       <div class="hand-filt-filter-header">Max Card Value:</div>
       <div class="hand-filt-filter-body">
         <select formControlName="maxCardVal">
-          <option *ngFor="let cardVal of cardValOptions">{{cardVal}}</option>
+          <option *ngFor="let cardVal of allCardValOpts">{{cardVal}}</option>
         </select>
       </div>
     </div>
@@ -70,15 +70,9 @@
       <div class="hand-filt-filter-header">Min Card Value:</div>
       <div class="hand-filt-filter-body">
         <select formControlName="minCardVal">
-          <option *ngFor="let cardVal of cardValOptions">{{cardVal}}</option>
+          <option *ngFor="let cardVal of allCardValOpts">{{cardVal}}</option>
         </select>
       </div>
-    </div>
-
-    <!-- draw and reset btns -->
-    <div class="hand-filt-btns-container margin-top">
-      <button class="hand-filt-btn hand-filt-draw-btn" type="submit">Draw!</button>
-      <button class="hand-filt-btn hand-filt-reset-btn" type="button" (click)="userReset()">Reset :(</button>
     </div>
 
   </form>

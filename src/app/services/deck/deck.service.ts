@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
-import { SuitService }  from './suit.service';
+import { SuitService }  from '../suit/suit.service';
 
-import { Deck } from '../models/deck';
+import { Deck } from '../../models/deck';
 
 @Injectable({
   providedIn: 'root'

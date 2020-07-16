@@ -1,5 +1,4 @@
 .hand-filt-container {
-  background-color: rgb(223, 223, 223);
   border-radius: 3px 0 0 3px;
   padding: 10px;
 }
@@ -21,7 +20,6 @@
 }
 
 
-
 .hand-filt-suits-container {
   display: flex;
   flex-direction: column;
@@ -34,37 +32,4 @@
 
 .hand-filt-suit-item > label {
   margin-left: 5px;
-}
-
-
-
-.hand-filt-btns-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.hand-filt-btn {
-  border-radius: 3px;
-  font-size: 18px;
-  padding: 10px;
-  width: 45%;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.1s;
-}
-
-.hand-filt-draw-btn {
-  border: solid 1px green;
-  background-color: #a4e0a4;
-}
-.hand-filt-draw-btn:hover {
-  background-color: #8add8a;
-}
-
-.hand-filt-reset-btn {
-  border: solid 1px red;
-  background-color: rgb(245, 164, 164);
-}
-.hand-filt-reset-btn:hover {
-  background-color: rgb(245, 148, 148);
 }
